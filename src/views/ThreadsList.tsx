@@ -1,7 +1,7 @@
 import React from "react";
 
-const Index = () => {
+const ThreadsList = () => {
   return <div>Index</div>;
 };
 
-export default Index;
+export default ThreadsList;
