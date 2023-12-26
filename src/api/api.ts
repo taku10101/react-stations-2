@@ -9,12 +9,11 @@ function createThread(title: string) {
   const body = {
     title,
   };
-  return fetch(`${BaseUrl}/threads`, {
+  fetch(`${BaseUrl}/threads`, {
     method: "POST",
     body: JSON.stringify(body),
-  })
-    .then((res) => res.json())
-    .catch((e) => console.error(e));
+  });
+  return body;
 }
 
 function threadById(id: string) {
