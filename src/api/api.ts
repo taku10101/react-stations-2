@@ -1,4 +1,4 @@
-const BaseUrl = "2y6i6tqn41.execute-api.ap-northeast-1.amazonaws.com ";
+const BaseUrl = "https://railway.bulletinboard.techtrain.dev";
 function threadsAll() {
   return fetch(`${BaseUrl}/threads`)
     .then((res) => res.json())
@@ -9,11 +9,16 @@ function createThread(title: string) {
   const body = {
     title,
   };
-  fetch(`${BaseUrl}/threads`, {
+  const response = fetch(`${BaseUrl}/threads`, {
     method: "POST",
     body: JSON.stringify(body),
+    headers: {
+      "Content-Type": "application/json",
+    },
   });
-  return body;
+  const resData = response.then((res) => res.json());
+
+  return resData;
 }
 
 function threadById(id: string) {

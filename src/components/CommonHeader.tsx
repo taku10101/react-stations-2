@@ -1,17 +1,21 @@
+import { Box } from "@mui/material";
+import { Outlet, Link } from "react-router-dom";
+
 const CommonHeader = () => {
   return (
     <>
-      <div
-        style={{
-          position: "fixed",
-          top: "0",
-          left: "0",
-          backgroundColor: "lightblue",
+      <Box
+        sx={{
           width: "100%",
+          color: "white",
         }}
       >
         <h1>My Website</h1>
-      </div>
+        <h2>
+          <Link to={"/posts"}> スレッドを立てる</Link>
+        </h2>
+        <Outlet />
+      </Box>
     </>
   );
 };
