@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import { getThreadsInterface } from "../types/api";
 import { Paper, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
-const BaseUrl = "https://railway.bulletinboard.techtrain.dev/";
-
+import { getThreads } from "../api/api";
 async function threadsAll() {
-  const response = await fetch(`${BaseUrl}/threads?offset=40`);
-  if (!response.ok) {
-    throw new Error(`HTTP error! status: ${response.status}`);
+  try {
+    const response = getThreads();
+    return response;
+  } catch (error) {
+    console.log(error);
   }
-  return response.json();
 }
 
 const CardList = () => {
