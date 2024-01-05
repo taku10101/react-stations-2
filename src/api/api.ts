@@ -1,11 +1,15 @@
 const BaseUrl = "https://railway.bulletinboard.techtrain.dev";
 function getThreads() {
-  const response = fetch(`${BaseUrl}/threads`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  const response = fetch(
+    `${BaseUrl}/threads?offset=0
+  `,
+    {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }
+  );
   const resData = response.then((res) => res.json());
   return resData;
 }
@@ -25,8 +29,8 @@ function createThread(title: string) {
   return resData;
 }
 
-function threadById(id: string) {
-  const response = fetch(`${BaseUrl}/threads/${id}`, {
+function threadById(threadId: string) {
+  const response = fetch(`${BaseUrl}/threads/${threadId}/posts`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
@@ -37,7 +41,7 @@ function threadById(id: string) {
 }
 
 function CreateThreadById(post: string) {
-  const response = fetch(`${BaseUrl}/threads/${post}`, {
+  const response = fetch(`${BaseUrl}/threads/${post}/post`, {
     method: "POST",
     body: JSON.stringify(post),
     headers: {
