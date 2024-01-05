@@ -3,20 +3,12 @@ import { getThreadsInterface } from "../types/api";
 import { Paper, Grid } from "@mui/material";
 import { Link } from "react-router-dom";
 import { getThreads } from "../api/api";
-async function threadsAll() {
-  try {
-    const response = getThreads();
-    return response;
-  } catch (error) {
-    console.log(error);
-  }
-}
 
 const CardList = () => {
   const [data, setData] = useState<getThreadsInterface[] | null>(null);
 
   useEffect(() => {
-    threadsAll()
+    getThreads()
       .then((jsonData) => setData(jsonData))
       .catch((err) => console.log(err));
   }, []);
