@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useEffect, useState } from "react";
 import { getThreadInterface } from "../types/api";
 import { Paper, Grid } from "@mui/material";
@@ -20,6 +21,12 @@ const CardList = () => {
   }, []);
 
   console.log(data);
+=======
+import { getThreadInterface, getThreadsInterface } from "../types/api";
+import { Paper, Grid } from "@mui/material";
+
+const CardList = (props: getThreadInterface[]) => {
+>>>>>>> 60d651ff7277bb5f9e229b740e20b3a1d12b2cd4
   return (
     <>
       <Grid
@@ -29,10 +36,17 @@ const CardList = () => {
           marginTop: "150px",
         }}
       >
+<<<<<<< HEAD
         {data &&
           data.posts.map((post: PostInterface) => (
             <Paper
               key={post.id}
+=======
+        {props &&
+          props?.map((thread: getThreadsInterface) => (
+            <Paper
+              key={thread.id}
+>>>>>>> 60d651ff7277bb5f9e229b740e20b3a1d12b2cd4
               sx={{
                 width: "500px",
                 height: "200px",
@@ -40,7 +54,11 @@ const CardList = () => {
                 margin: "30px",
               }}
             >
+<<<<<<< HEAD
               <h3>{post.post}</h3>
+=======
+              <h2>{thread.title}</h2>
+>>>>>>> 60d651ff7277bb5f9e229b740e20b3a1d12b2cd4
             </Paper>
           ))}
       </Grid>
