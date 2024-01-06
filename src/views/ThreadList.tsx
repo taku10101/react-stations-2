@@ -1,4 +1,4 @@
-import { Paper } from "@mui/material";
+import { Grid, Paper } from "@mui/material";
 import CommentList from "../components/CommentList";
 import CommentPost from "../components/CommentPost";
 import { useEffect, useState } from "react";
@@ -19,8 +19,11 @@ const ThreadsList = () => {
     <>
       <Paper>
         <h1>スレッド新規作成</h1>
-        <CommentList data={data || []} />
-        <CommentPost />
+
+        <Grid display={"flex"}>
+          <CommentList data={data} />
+          <CommentPost />
+        </Grid>
       </Paper>
     </>
   );
