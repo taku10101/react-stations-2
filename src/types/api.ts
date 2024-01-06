@@ -8,12 +8,11 @@ interface postThreadInterface {
 }
 
 interface getThreadInterface {
-  id: string;
-  title: string;
+  threadId: string;
   posts: {
     id: string;
-    content: string;
-  }[];
+    post: string;
+  };
 }
 
 interface postPostInterface {

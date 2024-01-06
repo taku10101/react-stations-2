@@ -24,19 +24,20 @@ const CardList = () => {
           marginTop: "150px",
         }}
       >
-        {data?.map((thread: getThreadsInterface) => (
-          <Paper
-            key={thread.id}
-            sx={{
-              width: "500px",
-              height: "200px",
-              backgroundColor: "lightblue",
-              margin: "30px",
-            }}
-          >
-            <h2>{thread.title}</h2>
-          </Paper>
-        ))}
+        {data &&
+          data?.map((thread: getThreadsInterface) => (
+            <Paper
+              key={thread.id}
+              sx={{
+                width: "500px",
+                height: "200px",
+                backgroundColor: "lightblue",
+                margin: "30px",
+              }}
+            >
+              <h2>{thread.title}</h2>
+            </Paper>
+          ))}
       </Grid>
     </>
   );
