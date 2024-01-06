@@ -1,20 +1,25 @@
 import { useEffect, useState } from "react";
-import { getThreadsInterface } from "../types/api";
+import { getThreadInterface } from "../types/api";
 import { Paper, Grid } from "@mui/material";
 import { threadById } from "../api/api";
 import { useParams } from "react-router-dom";
 
+interface PostInterface {
+  id: string;
+  post: string;
+}
+
 const CardList = () => {
-  const [data, setData] = useState<getThreadsInterface[] | null>(null);
+  const [data, setData] = useState<getThreadInterface[] | null>(null);
   const { id } = useParams<{ id: string }>();
   console.log(id);
   useEffect(() => {
-    if (!id) return;
-    threadById(id)
+    threadById(id!)
       .then((jsonData) => setData(jsonData))
       .catch((err) => console.log(err));
   }, []);
 
+  console.log(data);
   return (
     <>
       <Grid
@@ -25,9 +30,9 @@ const CardList = () => {
         }}
       >
         {data &&
-          data?.map((thread: getThreadsInterface) => (
+          data.posts.map((post: PostInterface) => (
             <Paper
-              key={thread.id}
+              key={post.id}
               sx={{
                 width: "500px",
                 height: "200px",
@@ -35,7 +40,7 @@ const CardList = () => {
                 margin: "30px",
               }}
             >
-              <h2>{thread.title}</h2>
+              <h3>{post.post}</h3>
             </Paper>
           ))}
       </Grid>

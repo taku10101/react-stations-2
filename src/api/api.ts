@@ -40,16 +40,29 @@ function threadById(threadId: string) {
   return resData;
 }
 
-function CreateThreadById(post: string) {
-  const response = fetch(`${BaseUrl}/threads/${post}/post`, {
+function CreateThreadById(id: string, post: string) {
+  const body = {
+    post,
+  };
+  return fetch(`${BaseUrl}/threads/${id}/posts`, {
     method: "POST",
-    body: JSON.stringify(post),
+    body: JSON.stringify(body),
     headers: {
       "Content-Type": "application/json",
     },
-  });
-  const resData = response.then((res) => res.json());
-  return resData;
+  })
+    .then((res) => {
+      if (!res.ok) {
+        throw new Error(res.statusText);
+      }
+      return res.text();
+    })
+    .then((data) => {
+      if (data === "") {
+        return {};
+      }
+      return JSON.parse(data);
+    });
 }
 
 export { getThreads, createThread, threadById, CreateThreadById };
