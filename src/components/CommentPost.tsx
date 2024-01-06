@@ -1,12 +1,19 @@
 import { Box, Typography, TextField, Button } from "@mui/material";
-import { threadById } from "../api/api";
+import { CreateThreadById } from "../api/api";
 import { useState } from "react";
+import { useParams } from "react-router";
 
 const CommentPost = () => {
   const [value, setValue] = useState("");
+
+  const { id } = useParams<{ id: string }>();
+
   async function handleCreateThread(value: string) {
     try {
-      const response = await threadById(value);
+      if (id === undefined) {
+        return;
+      }
+      const response = await CreateThreadById(id, value);
       console.log(response);
     } catch (error) {
       console.log(error);
